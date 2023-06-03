@@ -1,28 +1,33 @@
 import { UniqueEntityId } from "@/core/entities/unique-entity-id"
 import { About } from "@/domain/value-objects/about/about"
-import { Entity } from "../entity/entity"
+import { Entity } from "../../../core/entities/entity/entity"
 import { Optional } from "@/core/types/optional"
 
 // TODO: adicionar a possibilidade de anexar fotos a um pet
 
+type Age = "puppy" | "adult" | "elderly" | "unknown"
+
+type Size = "small" | "medium" | "large"
+
+type EnergyLevel = "calm" | "peaceful" | "fussy"
+
+type IndependenceLevel = "low" | "medium" | "high"
+
+type Environment = "spacious" | "large" | "roomy"
+
 interface PetProps {
-  id: UniqueEntityId
   name: string
   about: About
-  age: "puppy" | "adult" | "elderly" | "unknown"
-  size: "small" | "medium" | "large"
-  energyLevel: number
+  age: Age
+  size: Size
+  energyLevel: EnergyLevel
   adoptionRequisites: string[]
-  independenceLevel: "low" | "medium" | "high"
-  environment: "spacious" | "large" | "roomy"
+  independenceLevel: IndependenceLevel
+  environment: Environment
   createdAt: Date
 }
 
 export class Pet extends Entity<PetProps> {
-  get id() {
-    return this.props.id
-  }
-
   get name() {
     return this.props.name
   }
@@ -34,6 +39,7 @@ export class Pet extends Entity<PetProps> {
   get age() {
     return this.props.age
   }
+
   get size() {
     return this.props.size
   }
@@ -54,7 +60,7 @@ export class Pet extends Entity<PetProps> {
     const pet = new Pet(
       {
         ...props,
-        createdAt: new Date(),
+        createdAt: props.createdAt ?? new Date(),
       },
       id
     )
