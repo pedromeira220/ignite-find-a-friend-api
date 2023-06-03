@@ -15,7 +15,7 @@ export type IndependenceLevel = "low" | "medium" | "high"
 
 export type Environment = "spacious" | "large" | "roomy"
 
-interface PetProps {
+export interface PetProps {
   name: string
   about: About
   age: Age
