@@ -1,5 +1,6 @@
 import { About } from "@/domain/value-objects/about/about"
 import { Pet } from "./pet"
+import { UniqueEntityId } from "@/core/entities/unique-entity-id"
 
 describe("Pet suit", () => {
   it("'should be possible to create an pet", () => {
@@ -12,6 +13,7 @@ describe("Pet suit", () => {
       independenceLevel: "high",
       name: "My pet",
       size: "large",
+      organizationId: new UniqueEntityId(),
     })
 
     expect(pet.name).toBe("My pet")

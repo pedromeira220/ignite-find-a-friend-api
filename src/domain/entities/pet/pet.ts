@@ -2,18 +2,19 @@ import { UniqueEntityId } from "@/core/entities/unique-entity-id"
 import { About } from "@/domain/value-objects/about/about"
 import { Entity } from "../../../core/entities/entity/entity"
 import { Optional } from "@/core/types/optional"
+import { ValidationError } from "@/core/error"
 
 // TODO: adicionar a possibilidade de anexar fotos a um pet
 
-type Age = "puppy" | "adult" | "elderly" | "unknown"
+export type Age = "puppy" | "adult" | "elderly" | "unknown"
 
-type Size = "small" | "medium" | "large"
+export type Size = "small" | "medium" | "large"
 
-type EnergyLevel = "calm" | "peaceful" | "fussy"
+export type EnergyLevel = "calm" | "peaceful" | "fussy"
 
-type IndependenceLevel = "low" | "medium" | "high"
+export type IndependenceLevel = "low" | "medium" | "high"
 
-type Environment = "spacious" | "large" | "roomy"
+export type Environment = "spacious" | "large" | "roomy"
 
 interface PetProps {
   name: string
@@ -25,6 +26,7 @@ interface PetProps {
   independenceLevel: IndependenceLevel
   environment: Environment
   createdAt: Date
+  organizationId: UniqueEntityId
 }
 
 export class Pet extends Entity<PetProps> {
