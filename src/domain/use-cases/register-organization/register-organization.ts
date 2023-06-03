@@ -1,8 +1,9 @@
 import { ValidationError } from "@/core/error"
-import { Organization } from "../../../entities/organization/organization"
-import { OrganizationsRepository } from "../../../repositories/organizations-repository"
-import { Phone } from "../../../value-objects/phone/phone"
+import { Organization } from "../../entities/organization/organization"
+import { OrganizationsRepository } from "../../repositories/organizations-repository"
+import { Phone } from "../../value-objects/phone/phone"
 import { hash } from "bcryptjs"
+import { UniqueEntityId } from "@/core/entities/unique-entity-id"
 
 interface RegisterOrganizationUseCaseRequest {
   responsibleName: string
@@ -40,6 +41,7 @@ export class RegisterOrganizationUseCase {
       password,
       responsibleName,
       whatsApp: new Phone(whatsApp),
+      addressId: new UniqueEntityId(),
     })
 
     await this.organizationsRepository.create(organization)

@@ -7,7 +7,7 @@ import { hash, hashSync } from "bcryptjs"
 interface OrganizationProps {
   responsibleName: string
   email: string
-  // TODO: adicionar endereço
+  addressId: UniqueEntityId
   whatsApp: Phone
   passwordHash: string
   password: string
@@ -20,6 +20,10 @@ export class Organization extends Entity<OrganizationProps> {
 
   get email() {
     return this.props.email
+  }
+
+  get addressId() {
+    return this.props.addressId
   }
 
   get whatsApp() {

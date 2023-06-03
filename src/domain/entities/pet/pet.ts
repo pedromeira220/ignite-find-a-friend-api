@@ -2,7 +2,6 @@ import { UniqueEntityId } from "@/core/entities/unique-entity-id"
 import { About } from "@/domain/value-objects/about/about"
 import { Entity } from "../../../core/entities/entity/entity"
 import { Optional } from "@/core/types/optional"
-import { ValidationError } from "@/core/error"
 
 // TODO: adicionar a possibilidade de anexar fotos a um pet
 
