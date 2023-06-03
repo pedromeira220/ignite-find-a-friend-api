@@ -57,6 +57,10 @@ export class Pet extends Entity<PetProps> {
     return this.props.environment
   }
 
+  get organizationId() {
+    return this.props.organizationId
+  }
+
   static create(props: Optional<PetProps, "createdAt">, id?: UniqueEntityId) {
     const pet = new Pet(
       {

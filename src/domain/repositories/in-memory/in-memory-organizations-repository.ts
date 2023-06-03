@@ -6,8 +6,20 @@ export class InMemoryOrganizationsRepository
 {
   private items: Organization[] = []
 
-  async create(organization: Organization): Promise<void> {
+  async findById(id: string): Promise<Organization | null> {
+    const organization = this.items.find((org) => org.id.toString() == id)
+
+    if (!organization) {
+      return null
+    }
+
+    return organization
+  }
+
+  async create(organization: Organization): Promise<Organization> {
     this.items.push(organization)
+
+    return organization
   }
   async findByEmail(email: string): Promise<Organization | null> {
     const organization = this.items.find((org) => org.email == email)
