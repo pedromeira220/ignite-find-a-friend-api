@@ -1,10 +1,16 @@
+import { BaseError } from "@/core/error"
+
 export class Response<Data> {
-  private success: boolean
-  private erros: string[] = []
-  private data!: Data
+  private _success: boolean
+  private _errors: BaseError[] = []
+  private _data!: Data
 
   private constructor() {
-    this.success = true
+    this._success = true
+  }
+
+  set data(data: Data) {
+    this._data = data
   }
 
   static fromData<Data>(data: Data): Response<Data> {
@@ -13,11 +19,19 @@ export class Response<Data> {
     return instance
   }
 
+  static fromError(errors: BaseError[]) {
+    const instance = new Response()
+    instance._errors = errors
+    instance._success = false
+
+    return instance
+  }
+
   toJson() {
     return {
-      erros: this.erros,
-      success: this.success,
-      data: this.data,
+      errors: this._errors.map((error) => error.toJson()),
+      success: this._success,
+      data: this._data ?? {},
     }
   }
 }

@@ -1,5 +1,4 @@
 import { InMemoryOrganizationsRepository } from "@/domain/repositories/in-memory/in-memory-organizations-repository"
-import { OrganizationsRepository } from "@/domain/repositories/organizations-repository"
 import { RegisterOrganizationUseCase } from "@/domain/use-cases/register-organization/register-organization"
 import { Response } from "@/http/response"
 import { Request as ExpressRequest, Response as ExpressResponse } from "express"
@@ -8,7 +7,7 @@ import { z } from "zod"
 const register = async (req: ExpressRequest, res: ExpressResponse) => {
   const registerOrganizationBodySchema = z.object({
     responsibleName: z.string(),
-    email: z.string().email(),
+    email: z.string().email("O email deve vir no formato correto"),
     whatsApp: z.string(),
     password: z.string(),
   })

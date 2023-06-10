@@ -6,26 +6,41 @@ type BaseErrorProps = {
   stack?: string
 }
 
-class BaseError extends Error {
-  message: string
-  statusCode?: number
-  action?: string
-  errorLocationCode?: string
-  stack?: string
+export class BaseError extends Error {
+  private props: BaseErrorProps
 
-  constructor({
-    message,
-    statusCode,
-    errorLocationCode,
-    action,
-    stack,
-  }: BaseErrorProps) {
-    super(message)
-    this.message = message
-    this.action = action
-    this.statusCode = statusCode || 500
-    this.stack = stack
-    this.errorLocationCode = errorLocationCode
+  get message(): string {
+    return this.message
+  }
+
+  get statusCode() {
+    return this.props.statusCode
+  }
+
+  get action() {
+    return this.props.action
+  }
+
+  get errorLocationCode() {
+    return this.props.errorLocationCode
+  }
+
+  get stack() {
+    return this.props.stack
+  }
+
+  constructor(props: BaseErrorProps) {
+    super(props.message)
+    this.props = props
+  }
+
+  toJson() {
+    return {
+      message: this.props.message,
+      action: this.props.action,
+      errorLocationCode: this.props.errorLocationCode,
+      stack: this.props.stack,
+    }
   }
 }
 
