@@ -1,5 +1,5 @@
 import { Router } from "express"
-import { register } from "./create/create"
+import { register } from "./register/register"
 
 const organizationRoutes = Router()
 

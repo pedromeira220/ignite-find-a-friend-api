@@ -35,8 +35,6 @@ export class GetPetUseCase {
       })
     }
 
-    const pet = doesThePetExists
-
     return {
       pet: doesThePetExists,
     }

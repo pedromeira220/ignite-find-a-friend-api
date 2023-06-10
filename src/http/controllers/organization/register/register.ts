@@ -29,7 +29,7 @@ const register = async (req: ExpressRequest, res: ExpressResponse) => {
     whatsApp,
   })
 
-  return res.json(Response.fromData(organization).toJson())
+  return res.status(201).json(Response.fromData(organization).toJson())
 }
 
 export { register }
