@@ -33,15 +33,6 @@ export class BaseError extends Error {
     super(props.message)
     this.props = props
   }
-
-  toJson() {
-    return {
-      message: this.props.message,
-      action: this.props.action,
-      errorLocationCode: this.props.errorLocationCode,
-      stack: this.props.stack,
-    }
-  }
 }
 
 export class InternalServerError extends BaseError {

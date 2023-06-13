@@ -1,21 +1,21 @@
 import { randomUUID } from "node:crypto"
 
 export class UniqueEntityId {
-  private value: string
+  private _value: string
 
   public toString() {
-    return this.value
+    return this._value
   }
 
   public toValue() {
-    return this.value
+    return this._value
   }
 
   constructor(value?: string) {
     if (!!value) {
-      this.value = value
+      this._value = value
     } else {
-      this.value = randomUUID()
+      this._value = randomUUID()
     }
   }
 }

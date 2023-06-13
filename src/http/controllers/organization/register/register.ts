@@ -1,6 +1,7 @@
 import { InMemoryOrganizationsRepository } from "@/domain/repositories/in-memory/in-memory-organizations-repository"
 import { RegisterOrganizationUseCase } from "@/domain/use-cases/register-organization/register-organization"
 import { Response } from "@/http/response"
+import { OrganizationViewModel } from "@/http/view-models/organization-view-model"
 import { Request as ExpressRequest, Response as ExpressResponse } from "express"
 import { z } from "zod"
 
@@ -28,7 +29,11 @@ const register = async (req: ExpressRequest, res: ExpressResponse) => {
     whatsApp,
   })
 
-  return res.status(201).json(Response.fromData(organization).toJson())
+  return res
+    .status(201)
+    .json(
+      Response.fromData(OrganizationViewModel.toHttp(organization)).toJson()
+    )
 }
 
 export { register }

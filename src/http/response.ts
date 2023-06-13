@@ -1,4 +1,5 @@
 import { BaseError } from "@/core/error"
+import { ErrorViewModel } from "./view-models/error-view-model"
 
 export class Response<Data> {
   private _success: boolean
@@ -29,7 +30,7 @@ export class Response<Data> {
 
   toJson() {
     return {
-      errors: this._errors.map((error) => error.toJson()),
+      errors: this._errors.map((error) => ErrorViewModel.toHttp(error)),
       success: this._success,
       data: this._data ?? {},
     }

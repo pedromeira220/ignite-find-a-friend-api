@@ -6,7 +6,7 @@ import { UniqueEntityId } from "@/core/entities/unique-entity-id"
 export function makePet(override: Partial<PetProps> = {}, id?: UniqueEntityId) {
   const pet = Pet.create(
     {
-      about: new About(faker.lorem.text()),
+      about: new About(faker.lorem.sentence()),
       adoptionRequisites: [faker.lorem.text(), faker.lorem.text()],
       age: "puppy",
       energyLevel: "calm",
